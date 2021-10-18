@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button color="light" type="button" form="ngForm" value="Save" [disabled]="!productForm.valid"
+        (click)="form.ngSubmit.emit('Save')">
+        <ion-icon name="save" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="save()" [formGroup]="productForm" #form="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Product Name</ion-label>
+        <ion-input type="text" placeholder="Product Name (Required)" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Price</ion-label>
+        <ion-input type="number" placeholder="Price (Required)" formControlName="price"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Quantity</ion-label>
+        <ion-input type="number" placeholder="Quantity in Stock (Required)" formControlName="quantity"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Show Addresses</ion-label>
+        <ion-toggle color="warning" formControlName="showAddresses"></ion-toggle>
+      </ion-item>
+
+      <div *ngIf="productForm.get('showAddresses').value">
+        <ion-item color="warning">
+          <ion-label slot="start">Addresses</ion-label>
+          <ion-button fill="clear" color="light" slot="end" (click)="newAddress()">
+            <ion-icon size="large" slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <div formArrayName="addresses">
+          <ion-card [formGroupName]="i" *ngFor="let address of addresses.controls; let i=index">
+            <ion-item class="ion-justify-content-between">
+              <ion-card-title>{{ (address.get('addressType').value || 'Address') }} </ion-card-title>
+              <ion-button slot="end" color="warning" fill="clear" (click)="remove($event,i)">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Address Type</ion-label>
+              <ion-select formControlName="addressType" placeholder="Select One" mode="ios">
+                <ion-select-option [value]="addressType.home">Home</ion-select-option>
+                <ion-select-option [value]="addressType.work">Work</ion-select-option>
+                <ion-select-option [value]="addressType.other">Other</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Locality</ion-label>
+              <ion-input type="text" placeholder="Locality" formControlName="locality"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">City</ion-label>
+              <ion-input type="text" placeholder="city" formControlName="city"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Pincode</ion-label>
+              <ion-input type="number" placeholder="Pincode" formControlName="pincode"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">State</ion-label>
+              <ion-input type="text" placeholder="State" formControlName="state"></ion-input>
+            </ion-item>
+          </ion-card>
+        </div>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

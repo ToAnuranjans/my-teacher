@@ -1,0 +1,6 @@
+$font-path: "./assets/fonts";
+
+@font-face {
+    font-family: "NotoSansMono";
+    src: url("#{$font-path}/NotoSansMono-ExtraBold.ttf") format("truetype");
+}

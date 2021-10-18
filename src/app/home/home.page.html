@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      My Teachers
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h2>Books</h2>
+<app-book-list class="book-list" [books]="books$ | async" (add)="onAdd($event)"></app-book-list>
+
+<ion-button (click)="onAdd('1234')">
+  <ion-icon slot="start" name="add"></ion-icon>
+  Add
+</ion-button>
+<h2>My Collection</h2>
+<!-- <app-book-collection class="book-collection" [books]="bookCollection$ | async" (remove)="onRemove($event)">
+</app-book-collection> -->
+
+  <!-- <ion-virtual-scroll [items]="items" approxItemHeight="45px">
+    <ion-card *virtualItem="let item;">
+      <div>
+        <ion-img [src]="item.src">
+        </ion-img>
+      </div>
+      <ion-card-header>
+        <ion-card-title> {{item.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>{{item.name }}</ion-card-content>
+    </ion-card>
+  </ion-virtual-scroll> -->
+
+  <!-- 
+  <ion-virtual-scroll [items]="items" approxItemHeight="620px">
+    <ion-card *virtualItem="let item">
+      <ion-card-header>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="auto">
+            <ion-card-title>Jungle Life (Part - {{item}})</ion-card-title>
+          </ion-col>
+          <ion-col size="1">
+            <ion-button fill="clear" (click)="onClick($event)">
+              <ion-icon size="large" name="arrow-dropright"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-img height="400px" src="https://cdn.pixabay.com/photo/2020/11/24/11/24/sika-deer-5772242_1280.jpg"></ion-img>
+
+      <ion-card-content>
+        <ion-row class="ion-align-items-center ion-justify-content-between">
+          <ion-col size="auto">
+            <h1>{{'20.0' | currency :'INR'}}</h1>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button fill="clear" (click)="onLike($event)">
+              <ion-icon slot="icon-only" name="heart" color="danger"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-virtual-scroll> -->
+
+</ion-content>

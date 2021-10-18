@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Reactive Login</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <form (ngSubmit)="save()" [formGroup]="customerForm">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">First Name</ion-label>
+                <ion-input required minlength="5" placeholder="Customer firstName" type="text"
+                    formControlName="firstName" name="firstName">
+                </ion-input>
+                <ion-text color="danger" *ngIf="(customerForm.get('firstName').dirty 
+                    || customerForm.get('firstName').touched) 
+                    && !customerForm.get('firstName').valid">
+                    Error In First Name</ion-text>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Last Name</ion-label>
+                <ion-input required minlength="5" placeholder="Customer LastName" type="text" formControlName="lastName"
+                    name="lastName">
+                </ion-input>
+                <ion-text color="danger" *ngIf="(customerForm.get('lastName').dirty 
+                    || customerForm.get('lastName').touched) 
+                    && !customerForm.get('lastName').valid">
+                    Error In Last Name</ion-text>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input required placeholder="Customer Email" type="email" email formControlName="email" name="email">
+                </ion-input>
+                <ion-text color="danger" *ngIf="(customerForm.get('email').dirty 
+                || customerForm.get('email').touched) 
+                && !customerForm.get('email').valid">
+                    Error In Email</ion-text>
+            </ion-item>
+
+            <ion-item>
+                <ion-label slot="start">Send Catalogue</ion-label>
+                <ion-toggle slot="end" formControlName="sendCatalog"></ion-toggle>
+            </ion-item>
+
+            <ion-button block color="primary" type="submit" [disabled]="!customerForm.valid">
+                Submit
+            </ion-button>
+        </ion-list>
+
+        <hr>
+        {{customerForm.value | json}}
+
+    </form>
+
+</ion-content>
