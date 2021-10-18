@@ -15,7 +15,7 @@ export class ProductListPage implements OnInit {
   }
 
   goTo() {
-    this.navCtrl.navigateForward(['../', '5', 'edit'], {
+    this.navCtrl.navigateForward(['../', '5', 'details'], {
       relativeTo: this.route
     });
   }

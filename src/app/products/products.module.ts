@@ -5,15 +5,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductListPage } from './product-list/product-list.page';
+import { ProductDetailsPage } from './product-details/product-details.page';
 
 const routes: Routes = [
+  {
+    path: 'all',
+    component: ProductListPage
+  },
   {
     path: ':id/edit',
     component: EditProductPage
   },
   {
-    path: 'all',
-    component: ProductListPage
+    path: ':id/details',
+    component: ProductDetailsPage
   },
   {
     path: '',
@@ -24,6 +29,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ProductListPage,
+    ProductDetailsPage,
     EditProductPage
   ],
   imports: [
