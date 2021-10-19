@@ -1,0 +1,14 @@
+ion-img {
+    width: 50%;
+    transition: all 0.5s;
+    &.loaded {
+        width: 100%;
+    }
+}
+
+// ion-img::part(image):hover {
+// }
+
+// ion-img::part(image) {
+//     opacity: 0.5;
+// }

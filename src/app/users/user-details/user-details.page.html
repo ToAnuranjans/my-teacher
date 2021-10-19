@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="users"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{user.first_name + ' '+ user.last_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img [src]="user.avatar" (ionImgDidLoad)="imageLoaded=true" [ngClass]="{'loaded': imageLoaded}"></ion-img>
+
+</ion-content>

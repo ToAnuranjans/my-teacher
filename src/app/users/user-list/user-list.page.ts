@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { User } from 'src/app/users/user.model';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.page.html',
-  styleUrls: ['./product-list.page.scss'],
+  selector: 'app-user-list',
+  templateUrl: './user-list.page.html',
+  styleUrls: ['./user-list.page.scss'],
 })
-export class ProductListPage implements OnInit {
+export class UserListPage implements OnInit {
+
 
   users$: Observable<User[]>;
 
@@ -24,10 +25,12 @@ export class ProductListPage implements OnInit {
     this.users$ = this.api.getData();
   }
 
-  goTo() {
-    this.navCtrl.navigateForward(['../', '5', 'details'], {
-      relativeTo: this.route
-    });
+  goToDetails(user: User) {
+    const option: NavigationExtras = {
+      relativeTo: this.route,
+      state: user
+    };
+    this.navCtrl.navigateForward(['../users', user.id], option);
   }
 
 }
