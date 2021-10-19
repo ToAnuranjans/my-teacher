@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../user.model';
 
 @Component({
@@ -7,16 +8,16 @@ import { User } from '../user.model';
   styleUrls: ['./user-details-edit.page.scss'],
 })
 export class UserDetailsEditPage implements OnInit {
-  user: User = new User(
-    1,
-    'george.bluth@reqres.in',
-    'George',
-    'Bluth',
-    'https://reqres.in/img/faces/1-image.jpg'
-  );
-  constructor() { }
+  user: User;
+  imageLoaded = false;
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.user = this.router.getCurrentNavigation().extras.state as User;
+    console.log('extras', this.user);
   }
+
+  onSave() { }
+
 
 }

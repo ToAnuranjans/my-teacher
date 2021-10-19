@@ -4,10 +4,18 @@
       <ion-back-button defaultHref="users"></ion-back-button>
     </ion-buttons>
     <ion-title>{{user.first_name + ' '+ user.last_name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="onEdit()" slot="end">
+        <ion-icon slot="icon-only" color="dark" mode="md" name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-img [src]="user.avatar" (ionImgDidLoad)="imageLoaded=true" [ngClass]="{'loaded': imageLoaded}"></ion-img>
-
+  <ion-item>
+    <h1>{{user.first_name + ' ' + user.last_name}}</h1>
+    <h2>{{user.email }}</h2>
+  </ion-item>
 </ion-content>
