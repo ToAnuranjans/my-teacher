@@ -13,6 +13,6 @@ export const removeBook = createAction(
 
 export const retrieveBookList = createAction(
     '[Book List] Retreive list of books from API',
-    props<{books: Book[]}>()
+    props<{books: ReadonlyArray<Book> }>()
 );
 

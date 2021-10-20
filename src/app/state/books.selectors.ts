@@ -7,13 +7,13 @@ export const selectBooks = createSelector(
   (books: Array<Book>) => books
 );
 
-// export const selectCollectionState = createFeatureSelector<
-//   AppState,
-//   ReadonlyArray<string>
-// >('collection');
+export const selectCollectionState = createFeatureSelector<
+  AppState,
+  ReadonlyArray<string>
+>('collection');
 
-// export const selectBookCollection = createSelector(
-//   selectBooks,
-//   selectCollectionState,
-//   (books: Array<Book>, collection: Array<string>) => collection.map((id) => books.find((book) => book.id === id))
-// );
+export const selectBookCollection = createSelector(
+  selectBooks,
+  selectCollectionState,
+  (books: Array<Book>, collection: Array<string>) => collection.map((id) => books.find((book) => book.id === id))
+);

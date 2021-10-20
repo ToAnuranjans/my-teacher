@@ -10,4 +10,3 @@ export class BookCollectionComponent {
   @Input() books: Array<Book>;
   @Output() remove = new EventEmitter();
 }
-
