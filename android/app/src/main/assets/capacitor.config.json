@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "my-teacher",
+	"appId": "com.anuranjans.teachers",
+	"appName": "My Teacher",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

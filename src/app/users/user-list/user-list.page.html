@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Users</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let user of users$|async" detail (click)="goToDetails(user)">
+      <ion-avatar slot="start">
+        <img [src]="user.avatar" />
+      </ion-avatar>
+      <ion-label>
+        <h1>{{user.first_name + ' ' + user.last_name}}</h1>
+        <p>{{user.email}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

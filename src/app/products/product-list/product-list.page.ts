@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
+import { User } from 'src/app/users/user.model';
 
 @Component({
   selector: 'app-product-list',
@@ -9,13 +12,20 @@ import { NavController } from '@ionic/angular';
 })
 export class ProductListPage implements OnInit {
 
-  constructor(private navCtrl: NavController, private route: ActivatedRoute) { }
+  users$: Observable<User[]>;
+
+  constructor(private navCtrl: NavController,
+    private route: ActivatedRoute,
+    private api: ApiService) { }
+
+
 
   ngOnInit() {
+    this.users$ = this.api.getData();
   }
 
   goTo() {
-    this.navCtrl.navigateForward(['../', '5', 'edit'], {
+    this.navCtrl.navigateForward(['../', '5', 'details'], {
       relativeTo: this.route
     });
   }
