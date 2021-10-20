@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { User } from 'src/app/users/user.model';
-import { getUsersAction, setSelectedUser } from '../actions/users.action';
+import { getUsers, setSelectedUser } from '../actions/users.action';
 import { selectUsers } from '../selectors/users.selector';
 
 
@@ -30,7 +30,7 @@ export class UserListPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.api.getData().subscribe((x: User[]) => this.store.dispatch(getUsersAction({ users: x })));
+    this.api.getData().subscribe((x: User[]) => this.store.dispatch(getUsers({ users: x })));
   }
 
   goToDetails(user: User) {

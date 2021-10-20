@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { getUserById } from '../actions/users.action';
 import { selectUser } from '../selectors/users.selector';
 import { User } from '../user.model';
@@ -13,7 +14,7 @@ import { User } from '../user.model';
 })
 export class UserDetailsPage implements OnInit {
   imageLoaded = false;
-  user: User;
+  user$: Observable<User>;
   userId: number;
 
 
@@ -25,11 +26,7 @@ export class UserDetailsPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(x => {
       this.userId = +x.get('id');
-      console.log(this.user, this.userId);
-      this.store.select(selectUser(this.userId)).subscribe(user => {
-        this.user = user;
-        console.log({ user });
-      });
+      this.user$ = this.store.select(selectUser(this.userId));
       this.store.dispatch(getUserById({ id: this.userId }));
     });
   }
@@ -37,7 +34,6 @@ export class UserDetailsPage implements OnInit {
   onEdit() {
     const option: NavigationExtras = {
       relativeTo: this.route,
-      state: this.user
     };
     this.navCtrl.navigateForward(['../', this.userId, 'edit'], option);
   }

@@ -6,8 +6,8 @@ import { UserListPage } from './user-list/user-list.page';
 import { RouterModule, Routes } from '@angular/router';
 import { UserDetailsPage } from './user-details/user-details.page';
 import { UserDetailsEditPage } from './user-details-edit/user-details-edit.page';
-import { StoreFeatureModule, StoreModule } from '@ngrx/store';
-import { collectionUserReducer, userReducerKey, usersReducer } from './reducers/users.reducer';
+import { StoreModule } from '@ngrx/store';
+import { usersReducer } from './reducers/users.reducer';
 
 const routes: Routes = [
   {
@@ -30,9 +30,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    StoreModule.forFeature(userReducerKey, collectionUserReducer),
-    // StoreModule.forFeature('selectedUser', collectionUserReducer),
-    // StoreModule.forRoot(collectionUserReducer),
+    StoreModule.forFeature('users', usersReducer),
+
     RouterModule.forChild(routes),
   ]
 })

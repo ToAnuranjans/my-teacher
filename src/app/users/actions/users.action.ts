@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '../user.model';
 
-export const getUsersAction = createAction(
+export const getUsers = createAction(
     '[User-List] Get Users',
     props<{ users: User[] }>()
 );
