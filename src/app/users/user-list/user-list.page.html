@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="warning">
+  <ion-toolbar>
     <ion-title>Users</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,12 +10,10 @@
       <ion-avatar slot="start">
         <img [src]="user.avatar" />
       </ion-avatar>
-      <ion-row class="ion-align-items-end">
-        <ion-col size="12" class="ion-align-self-start">
-          <h3>{{user.first_name + ' ' + user.last_name}}</h3>
-          <p>{{user.email}}</p>
-        </ion-col>
-      </ion-row>
+      <ion-label>
+        <h1>{{user.first_name + ' ' + user.last_name}}</h1>
+        <p>{{user.email}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="warning">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="users"></ion-back-button>
     </ion-buttons>
@@ -14,8 +14,12 @@
 
 <ion-content>
   <ion-img [src]="user.avatar" (ionImgDidLoad)="imageLoaded=true" [ngClass]="{'loaded': imageLoaded}"></ion-img>
-  <ion-item>
-    <h1>{{user.first_name + ' ' + user.last_name}}</h1>
-    <h2>{{user.email }}</h2>
-  </ion-item>
+  <ion-list lines="none">
+    <ion-item>
+      <ion-label>
+        <h1>{{user.first_name + ' ' + user.last_name}}</h1>
+        <p>{{user.email }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

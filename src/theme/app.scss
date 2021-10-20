@@ -1,3 +1,14 @@
 ion-item {
     --min-height: 75px;
 }
+
+ion-toolbar {
+    --background: #ffc409;
+    --border-color: #e0ac08;
+    --color: #141212;
+    --min-height: 80px;
+    --text-color: #fff;
+    ion-back-button {
+        --color: #141212;
+    }
+}

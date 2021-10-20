@@ -1,16 +1,9 @@
 ion-img {
     width: 50%;
-    transition: all 0.5s;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
     &.loaded {
         width: 100%;
     }
 }
 
 
-
-// ion-img::part(image):hover {
-// }
-
-// ion-img::part(image) {
-//     opacity: 0.5;
-// }
