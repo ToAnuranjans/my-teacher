@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from './books.model';
 
 @Component({
@@ -6,14 +6,7 @@ import { Book } from './books.model';
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
 })
-export class BookListComponent implements OnInit {
+export class BookListComponent {
   @Input() books: Array<Book>;
   @Output() add = new EventEmitter();
-
-  constructor(){
-   
-  }
-  ngOnInit(): void {
-    console.log(this.books);
-  }
 }

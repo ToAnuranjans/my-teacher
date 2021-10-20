@@ -6,6 +6,8 @@ import { UserListPage } from './user-list/user-list.page';
 import { RouterModule, Routes } from '@angular/router';
 import { UserDetailsPage } from './user-details/user-details.page';
 import { UserDetailsEditPage } from './user-details-edit/user-details-edit.page';
+import { StoreFeatureModule, StoreModule } from '@ngrx/store';
+import { collectionUserReducer, userReducerKey, usersReducer } from './reducers/users.reducer';
 
 const routes: Routes = [
   {
@@ -17,17 +19,20 @@ const routes: Routes = [
     component: UserDetailsPage
   },
   {
-    path:':id/edit',
-    component:UserDetailsEditPage
+    path: ':id/edit',
+    component: UserDetailsEditPage
   }
 ];
 
 @NgModule({
-  declarations: [UserListPage, UserDetailsPage,UserDetailsEditPage],
+  declarations: [UserListPage, UserDetailsPage, UserDetailsEditPage],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    StoreModule.forFeature(userReducerKey, collectionUserReducer),
+    // StoreModule.forFeature('selectedUser', collectionUserReducer),
+    // StoreModule.forRoot(collectionUserReducer),
     RouterModule.forChild(routes),
   ]
 })

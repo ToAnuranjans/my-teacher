@@ -26,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'tabs/users'
+        redirectTo: 'tabs/home'
       }
     ]
   }

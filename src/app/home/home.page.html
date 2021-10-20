@@ -3,3 +3,19 @@
     <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Books</ion-label>
+    </ion-list-header>
+    <app-book-list class="book-list" [books]="books$ | async" (add)="onAdd($event)"></app-book-list>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>My Collection</ion-label>
+    </ion-list-header>
+    <app-book-collection class="book-collection" [books]="bookCollection$ | async" (remove)="onRemove($event)">
+    </app-book-collection>
+  </ion-list>
+
+</ion-content>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { getUserById } from '../actions/users.action';
+import { selectUser } from '../selectors/users.selector';
 import { User } from '../user.model';
 
 @Component({
@@ -11,11 +14,24 @@ import { User } from '../user.model';
 export class UserDetailsPage implements OnInit {
   imageLoaded = false;
   user: User;
-  constructor(private router: Router, private navCtrl: NavController, private route: ActivatedRoute) { }
+  userId: number;
+
+
+  constructor(private router: Router, private navCtrl: NavController,
+    private route: ActivatedRoute,
+    private store: Store) { }
+
 
   ngOnInit() {
-    this.user = this.router.getCurrentNavigation().extras.state as User;
-    console.log('extras', this.user);
+    this.route.paramMap.subscribe(x => {
+      this.userId = +x.get('id');
+      console.log(this.user, this.userId);
+      this.store.select(selectUser(this.userId)).subscribe(user => {
+        this.user = user;
+        console.log({ user });
+      });
+      this.store.dispatch(getUserById({ id: this.userId }));
+    });
   }
 
   onEdit() {
@@ -23,6 +39,6 @@ export class UserDetailsPage implements OnInit {
       relativeTo: this.route,
       state: this.user
     };
-    this.navCtrl.navigateForward(['../', this.user.id,'edit'], option);
+    this.navCtrl.navigateForward(['../', this.userId, 'edit'], option);
   }
 }
