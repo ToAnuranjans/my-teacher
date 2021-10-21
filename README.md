@@ -14,7 +14,18 @@
 <table>
     <tr>
       <td>
-          <img width="350px" src="./docs/images/product-edit.png" alt="Details"> </img>
+          <img width="350px" src="./docs/images/img-1.png" alt="Details"> </img>
+      </td>
+      <td>
+          <img width="350px" src="./docs/images/img-2.png" alt="Details"> </img>
+      </td>
+  </tr>
+   <tr>
+      <td>
+          <img width="350px" src="./docs/images/img-3.png" alt="Details"> </img>
+      </td>
+      <td>
+          <img width="350px" src="./docs/images/img-4.png" alt="Details"> </img>
       </td>
   </tr>
 </table>
