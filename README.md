@@ -9,6 +9,13 @@
   - Safe Area
   - Status bar color set up with primary color
 
-![Alt text](./docs/images/product-edit.png?raw=true "Product Edit")
 
+### Screens
+<table>
+    <tr>
+      <td>
+          <img width="350px" src="./docs/images/product-edit.png" alt="Details"> </img>
+      </td>
+  </tr>
+</table>
 
