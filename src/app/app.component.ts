@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { map, filter } from 'rxjs/operators';
+import { NavigationEnd, Router } from '@angular/router';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,20 @@ import { map, filter } from 'rxjs/operators';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private navCtrl: NavController,
-    private route: ActivatedRoute,
-    private router: Router) {
+  constructor(private router: Router, private statusBar: StatusBar) {
+    this.setStatusBarColor();
+    this.trackNavigationUrl();
+  }
+
+  setStatusBarColor() {
+    const styles = getComputedStyle(document.documentElement);
+    const appPrimaryColor = styles.getPropertyValue('--ion-color-primary');
+    this.statusBar.overlaysWebView(true);
+    this.statusBar.backgroundColorByHexString(appPrimaryColor);
+    console.log({ appPrimaryColor });
+  }
+
+  trackNavigationUrl() {
     this.router.events.pipe(filter(e => e instanceof NavigationEnd))
       .subscribe((x: any) => console.log({ navigatedTo: x.url }));
   }
