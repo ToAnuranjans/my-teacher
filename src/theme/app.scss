@@ -3,6 +3,7 @@ ion-item {
 }
 
 ion-toolbar {
+
     --background: var(--ion-color-primary);
     --border-color: var(--ion-color-primary-shade);
     --color: #141212;
@@ -11,4 +12,7 @@ ion-toolbar {
     ion-back-button {
         --color: #141212;
     }
+    --ion-safe-area-top:10px;
 }
+
+

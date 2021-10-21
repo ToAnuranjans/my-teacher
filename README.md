@@ -6,3 +6,6 @@
 
 
 ### Setting status bar color of the app with primary color.
+
+## Defect Fixes
+    - safe area and routing fixes
