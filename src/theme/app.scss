@@ -3,8 +3,8 @@ ion-item {
 }
 
 ion-toolbar {
-    --background: #ffc409;
-    --border-color: #e0ac08;
+    --background: var(--ion-color-primary);
+    --border-color: var(--ion-color-primary-shade);
     --color: #141212;
     --min-height: 80px;
     --text-color: #fff;
