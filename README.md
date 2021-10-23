@@ -8,6 +8,7 @@
   - Single point for theming
   - Safe Area
   - Status bar color set up with primary color
+  - ion-skeleton-text
 
 
 ### Screens
@@ -26,6 +27,13 @@
       </td>
       <td>
           <img width="350px" src="./docs/images/img-4.png" alt="Details"> </img>
+      </td>
+  </tr>
+    <tr>
+      <td>
+          <img width="350px" src="./docs/images/img-5.png" alt="Details"> </img>
+      </td>
+      <td>
       </td>
   </tr>
 </table>

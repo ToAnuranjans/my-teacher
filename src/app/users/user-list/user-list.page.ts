@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { debounce, debounceTime, map, tap } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { User } from 'src/app/users/user.model';
 import { getUsers, setSelectedUser } from '../actions/users.action';
@@ -27,11 +27,11 @@ export class UserListPage implements OnInit {
 
 
   ngOnInit() {
+    setTimeout(() => {
+      this.api.getData().subscribe((users: User[]) => this.store.dispatch(getUsers({ users })));
+    }, 3000);
   }
 
-  ionViewWillEnter() {
-    this.api.getData().subscribe((x: User[]) => this.store.dispatch(getUsers({ users: x })));
-  }
 
   goToDetails(user: User) {
     const option: NavigationExtras = {
