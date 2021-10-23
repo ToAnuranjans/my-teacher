@@ -4,12 +4,43 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="( books$| async ).length && ( books$| async ) as books ; else NoBooks">
     <ion-list-header>
       <ion-label>Books</ion-label>
     </ion-list-header>
-    <app-book-list class="book-list" [books]="books$ | async" (add)="onAdd($event)"></app-book-list>
+    <app-book-list class="book-list" [books]="books" (add)="onAdd($event)"></app-book-list>
   </ion-list>
+
+  <ng-template #NoBooks>
+    <ion-list>
+      <ion-item *ngFor="let i of [].constructor(5)">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      
+    </ion-list>
+  </ng-template>
+
+
+
+
+
+
+
+
+
   <ion-list>
     <ion-list-header>
       <ion-label>My Collection</ion-label>
@@ -17,5 +48,10 @@
     <app-book-collection class="book-collection" [books]="bookCollection$ | async" (remove)="onRemove($event)">
     </app-book-collection>
   </ion-list>
+
+
+
+
+
 
 </ion-content>

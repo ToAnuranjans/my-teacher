@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let user of users$|async" detail (click)="goToDetails(user)">
+  <ion-list *ngIf="(users$|async).length && (users$|async) as users;else NoUsers">
+    <ion-item *ngFor="let user of users" detail (click)="goToDetails(user)">
       <ion-avatar slot="start">
         <img [src]="user.avatar" />
       </ion-avatar>
@@ -16,4 +16,26 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <ng-template #NoUsers>
+    <ion-list>
+      <ion-item *ngFor="let i of [].constructor(5)">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+  </ng-template>
 </ion-content>

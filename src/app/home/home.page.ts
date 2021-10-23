@@ -8,6 +8,9 @@ import {
   removeBook,
 } from '../state/books.action';
 import { GoogleBooksService } from '../book-list/books.service';
+import { debounceTime } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Book } from '../book-list/books.model';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +19,9 @@ import { GoogleBooksService } from '../book-list/books.service';
 })
 export class HomePage implements OnInit {
 
-  books$ = this.store.select(selectBooks);
+  loaded = false;
+
+  books$: Observable<Book[]>;
 
   bookCollection$ = this.store.select(selectBookCollection);
 
@@ -36,9 +41,19 @@ export class HomePage implements OnInit {
 
 
   ngOnInit() {
-    this.booksService
-      .getBooks()
-      .subscribe((books) => this.store.dispatch(retrieveBookList({ books })));
+
+    this.books$ = this.store.select(selectBooks);
+
+    setTimeout(() => {
+      this.booksService
+        .getBooks()
+        .pipe(debounceTime(3000))
+        .subscribe((books) => {
+          this.loaded = true;
+          this.store.dispatch(retrieveBookList({ books }));
+        });
+    }, 3000);
+
   }
 
 
