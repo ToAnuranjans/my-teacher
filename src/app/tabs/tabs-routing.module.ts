@@ -10,19 +10,19 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
+        loadChildren: () => import('../features/home/home.module').then(m => m.HomePageModule)
       },
       {
         path: 'courses',
-        loadChildren: () => import('../courses/courses.module').then(m => m.CoursesModule)
+        loadChildren: () => import('../features/courses/courses.module').then(m => m.CoursesModule)
       },
       {
         path: 'exams',
-        loadChildren: () => import('../exams/exams.module').then(m => m.ExamsModule)
+        loadChildren: () => import('../features/exams/exams.module').then(m => m.ExamsModule)
       },
       {
         path: 'users',
-        loadChildren: () => import('../users/users.module').then(m => m.UsersModule)
+        loadChildren: () => import('../features/users/users.module').then(m => m.UsersModule)
       },
       {
         path: '',

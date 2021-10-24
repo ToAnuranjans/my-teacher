@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { debounce, debounceTime, map, tap } from 'rxjs/operators';
-import { ApiService } from 'src/app/services/api.service';
-import { User } from 'src/app/users/user.model';
-import { getUsers, setSelectedUser } from '../actions/users.action';
+import { User } from 'src/app/features/users/user.model';
+import { setSelectedUser, loadUsers } from '../actions/users.action';
 import { selectUsers } from '../selectors/users.selector';
 
 
@@ -22,14 +19,12 @@ export class UserListPage implements OnInit {
 
   constructor(private navCtrl: NavController,
     private route: ActivatedRoute,
-    private api: ApiService,
     private store: Store) { }
 
 
   ngOnInit() {
-    setTimeout(() => {
-      this.api.getData().subscribe((users: User[]) => this.store.dispatch(getUsers({ users })));
-    }, 3000);
+
+    this.store.dispatch(loadUsers());
   }
 
 

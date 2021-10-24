@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { selectBookCollection, selectBooks } from '../state/books.selectors';
+import { selectBookCollection, selectBooks } from '../../state/books.selectors';
 import {
   retrieveBookList,
   addBook,
   removeBook,
-} from '../state/books.action';
+} from '../../state/books.action';
 import { GoogleBooksService } from '../book-list/books.service';
 import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';

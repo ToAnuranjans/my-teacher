@@ -19,7 +19,6 @@ export class AppComponent {
     const appPrimaryColor = styles.getPropertyValue('--ion-color-primary');
     this.statusBar.overlaysWebView(true);
     this.statusBar.backgroundColorByHexString(appPrimaryColor);
-    console.log({ appPrimaryColor });
   }
 
   trackNavigationUrl() {

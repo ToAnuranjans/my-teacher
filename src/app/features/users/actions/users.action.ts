@@ -1,6 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '../user.model';
 
+export const loadUsers = createAction(
+    '[User] Load users'
+);
+
+export const userLoadSuccess = createAction(
+    '[User] loaded successfull',
+    props<{ users: User[] }>()
+);
+
 export const getUsers = createAction(
     '[User-List] Get Users',
     props<{ users: User[] }>()

@@ -1,5 +1,5 @@
-import { Book } from '../book-list/books.model';
-import { User } from '../users/user.model';
+import { Book } from '../features/book-list/books.model';
+import { User } from '../features/users/user.model';
 
 
 

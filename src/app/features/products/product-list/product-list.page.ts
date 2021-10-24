@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { ApiService } from 'src/app/services/api.service';
-import { User } from 'src/app/users/user.model';
+import { ApiService } from 'src/app/services/client/api.service';
+import { User } from 'src/app/features/users/user.model';
 
 @Component({
   selector: 'app-product-list',

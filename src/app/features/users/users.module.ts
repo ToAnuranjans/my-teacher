@@ -8,6 +8,8 @@ import { UserDetailsPage } from './user-details/user-details.page';
 import { UserDetailsEditPage } from './user-details-edit/user-details-edit.page';
 import { StoreModule } from '@ngrx/store';
 import { usersReducer } from './reducers/users.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffects } from './effects/users.effects';
 
 const routes: Routes = [
   {
@@ -31,7 +33,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     StoreModule.forFeature('users', usersReducer),
-
+    EffectsModule.forFeature([UsersEffects]),
     RouterModule.forChild(routes),
   ]
 })
