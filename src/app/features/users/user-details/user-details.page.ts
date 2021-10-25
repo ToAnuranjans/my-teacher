@@ -3,9 +3,9 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getUserById } from '../actions/users.action';
-import { selectUser } from '../selectors/users.selector';
 import { User } from '../user.model';
+
+import * as UserSelectors from '../state/user.selectors';
 
 @Component({
   selector: 'app-user-details',
@@ -18,17 +18,16 @@ export class UserDetailsPage implements OnInit {
   userId: number;
 
 
+
   constructor(private router: Router, private navCtrl: NavController,
     private route: ActivatedRoute,
     private store: Store) { }
 
 
   ngOnInit() {
-    this.route.paramMap.subscribe(x => {
-      this.userId = +x.get('id');
-      this.user$ = this.store.select(selectUser(this.userId));
-      this.store.dispatch(getUserById({ id: this.userId }));
-    });
+    this.user$ = this.store.select(UserSelectors.selectCurrentUser);
+
+    this.userId = +this.route.snapshot.params.id;
   }
 
   onEdit() {

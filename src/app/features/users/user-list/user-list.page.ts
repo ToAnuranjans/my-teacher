@@ -3,9 +3,9 @@ import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { User } from 'src/app/features/users/user.model';
-import { setSelectedUser, loadUsers } from '../actions/users.action';
-import { selectUsers } from '../selectors/users.selector';
-
+import * as UserSelectors from '../state/user.selectors';
+import * as UserActions from '../state/user.actions';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
@@ -14,8 +14,7 @@ import { selectUsers } from '../selectors/users.selector';
 })
 export class UserListPage implements OnInit {
 
-  users$ = this.store.select((selectUsers));
-
+  users$ = this.store.select((UserSelectors.selectAllUsers));
 
   constructor(private navCtrl: NavController,
     private route: ActivatedRoute,
@@ -23,8 +22,7 @@ export class UserListPage implements OnInit {
 
 
   ngOnInit() {
-
-    this.store.dispatch(loadUsers());
+    this.store.dispatch(UserActions.loadUsers());
   }
 
 
@@ -33,8 +31,9 @@ export class UserListPage implements OnInit {
       relativeTo: this.route,
     };
 
+    this.store.dispatch(UserActions.setCurrentUserId({ id: user.id }));
+
     console.log({ user });
-    this.store.dispatch(setSelectedUser({ user }));
     this.navCtrl.navigateForward(['../users', user.id], option);
   }
 

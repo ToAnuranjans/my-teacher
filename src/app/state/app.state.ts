@@ -9,3 +9,14 @@ export interface AppState {
   collection: ReadonlyArray<string>;
   users: ReadonlyArray<User>;
 }
+
+
+export interface State {
+  appName?: string ;
+}
+
+
+
+
+
+

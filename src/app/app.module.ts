@@ -15,6 +15,9 @@ import { collectionReducer } from './state/collection.reducer';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 
+//MOCK
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MovieInMemoryMockService } from './services/client/inMemoryMock.service';
 @NgModule({
   declarations: [AppComponent],
 
@@ -29,10 +32,14 @@ import { EffectsModule } from '@ngrx/effects';
     StoreModule.forRoot({ books: booksReducer, collection: collectionReducer }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
-      name:'My Teacher App',
+      name: 'My Teacher App',
       maxAge: 25,
       logOnly: environment.production,
-    })
+    }),
+    !environment.production ?
+      [] : HttpClientInMemoryWebApiModule.forRoot(MovieInMemoryMockService, {
+        delay: 100,
+      }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, StatusBar],
   bootstrap: [AppComponent],

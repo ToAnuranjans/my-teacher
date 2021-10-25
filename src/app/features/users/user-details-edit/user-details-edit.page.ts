@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { getUserById } from '../actions/users.action';
-import { selectUser } from '../selectors/users.selector';
+import { Subscription } from 'rxjs';
 import { User } from '../user.model';
+import * as UserSelectors from '../state/user.selectors';
+import * as UserActions from '../state/user.actions';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-details-edit',
@@ -13,24 +15,40 @@ import { User } from '../user.model';
 })
 export class UserDetailsEditPage implements OnInit {
   imageLoaded = false;
-  user$: Observable<User>;
+  userSub: Subscription;
   userId: number;
+  userForm: FormGroup;
+  user: User;
 
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store) { }
+    private store: Store,
+    private fb: FormBuilder) { }
 
 
   ngOnInit() {
-    this.route.paramMap.subscribe(x => {
-      this.userId = +x.get('id');
-      this.user$ = this.store.select(selectUser(this.userId));
-      this.store.dispatch(getUserById({ id: this.userId }));
+    this.userSub = this.store.select(UserSelectors.selectCurrentUser)
+      .subscribe(u => {
+        this.user = u;
+      });
+
+    this.userId = +this.route.snapshot.params.id;
+
+    this.userForm = this.fb.group({
+      first_name: [this.user?.first_name],
+      last_name: [this.user?.last_name]
     });
   }
 
-  onSave() { }
+  onSave() {
+    this.userForm.updateValueAndValidity();
+    const { first_name, last_name } = this.userForm.value;
+    this.store.dispatch(UserActions.updateCurrentUser({ id: this.userId, user: { ...this.user, first_name, last_name } as User }));
+  }
 
+  ionViewDidLeave() {
+    this.userSub.unsubscribe();
+  }
 
 }
