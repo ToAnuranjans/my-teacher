@@ -3,7 +3,14 @@
 	"appName": "My Teacher",
 	"webDir": "www",
 	"bundledWebRuntime": false,
+	"plugins": {
+		"keyboard": {
+			"resize": "body",
+			"style": "dark",
+			"resizeOnFullScreen": true
+		}
+	},
 	"server": {
-		"url": "http://192.168.12.254:8100"
+		"cleartext": false
 	}
 }

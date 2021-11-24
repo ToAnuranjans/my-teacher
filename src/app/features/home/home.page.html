@@ -6,7 +6,7 @@
 <ion-content>
   <ion-list *ngIf="( books$| async ).length && ( books$| async ) as books ; else NoBooks">
     <ion-list-header>
-      <ion-label>Books</ion-label>
+      <ion-label>Books...</ion-label>
     </ion-list-header>
     <app-book-list class="book-list" [books]="books" (add)="onAdd($event)"></app-book-list>
   </ion-list>

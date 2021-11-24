@@ -13,6 +13,9 @@ const config: CapacitorConfig = {
       resizeOnFullScreen: true,
     },
   },
+  server: {
+    cleartext: false
+  }
 };
 
 export default config;

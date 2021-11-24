@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { filter } from 'rxjs/operators';
+import { StatusBar } from '@capacitor/status-bar';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private router: Router, private statusBar: StatusBar) {
+  constructor(private router: Router) {
     this.setStatusBarColor();
     this.trackNavigationUrl();
   }
@@ -17,8 +17,10 @@ export class AppComponent {
   setStatusBarColor() {
     const styles = getComputedStyle(document.documentElement);
     const appPrimaryColor = styles.getPropertyValue('--ion-color-primary');
-    this.statusBar.overlaysWebView(true);
-    this.statusBar.backgroundColorByHexString(appPrimaryColor);
+    console.log({ appPrimaryColor });
+    StatusBar.setBackgroundColor({ color: appPrimaryColor.trim() });
+    StatusBar.setOverlaysWebView({ overlay: true });
+
   }
 
   trackNavigationUrl() {

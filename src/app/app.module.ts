@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -41,7 +40,7 @@ import { MovieInMemoryMockService } from './services/client/inMemoryMock.service
         delay: 100,
       }),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, StatusBar],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
