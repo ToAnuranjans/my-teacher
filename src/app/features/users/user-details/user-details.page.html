@@ -3,7 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="users"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{(user$ |async).first_name + ' '+ (user$ | async ).last_name}}</ion-title>
+    <ion-title>
+      <ng-container *ngIf="(user$ | async) as user">
+        {{user.first_name + ' '+ user.last_name}}
+      </ng-container>
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="onEdit()" slot="end">
         <ion-icon slot="icon-only" color="dark" mode="md" name="create"></ion-icon>
@@ -13,7 +17,7 @@
 </ion-header>
 
 <ion-content *ngIf="(user$|async) as user">
-  <ion-img [src]="(user$ |async).avatar" (ionImgDidLoad)="imageLoaded=true" [ngClass]="{'loaded': imageLoaded}">
+  <ion-img [src]="user.avatar" (ionImgDidLoad)="imageLoaded=true" [ngClass]="{'loaded': imageLoaded}">
   </ion-img>
   <ion-list lines="none">
     <ion-item>

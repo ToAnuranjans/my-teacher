@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="(users$|async).length && (users$|async) as users;else NoUsers">
+  <ion-list *ngIf="(users$|async) as users;else NoUsers">
     <ion-item *ngFor="let user of users" detail (click)="goToDetails(user)">
       <ion-avatar slot="start">
         <img [src]="user.avatar" />
