@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { StatusBar } from '@capacitor/status-bar';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,13 @@ import { StatusBar } from '@capacitor/status-bar';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private router: Router) {
-    this.setStatusBarColor();
-    this.trackNavigationUrl();
+  constructor(private router: Router, private platform: Platform) {
+    this.platform.ready().then(() => {
+      if (platform.is('android')) {
+        this.setStatusBarColor();
+      }
+      this.trackNavigationUrl();
+    });
   }
 
   setStatusBarColor() {
