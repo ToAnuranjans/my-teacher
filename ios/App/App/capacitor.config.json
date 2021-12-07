@@ -11,6 +11,7 @@
 		}
 	},
 	"server": {
-		"cleartext": true
+		"cleartext": false,
+		"url": "http://192.168.82.254:8100"
 	}
 }
